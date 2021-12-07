@@ -29,6 +29,6 @@ class Contacto extends Mailable
     public function build()
     {
         return $this->from('jm@estonoesunaweb.com.ar', 'Contacto ENEUW')
-            ->view('inicio');
+            ->view('correo.contacto');
     }
 }

@@ -8,8 +8,8 @@ use Illuminate\Support\Facades\Mail;
 
 class ControladorEnviaComentarios extends Controller
 {
-    //
     function envia (Request $request){
+
         Mail::to('jmlombardi@dukarevich.com.ar')->send(new Contacto);
         return 'correo';
     }

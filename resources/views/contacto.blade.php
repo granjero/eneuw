@@ -24,15 +24,15 @@
                     @csrf
                     <div class="my-3">
                         <label for="nombre" class="form-label">Mi nombre es: </label>
-                        <input type="text" class="form-control" id="nombre" placeholder="Cooler O'Connor">
+                        <input name="nombre" type="text" class="form-control" id="nombre" placeholder="Cooler O'Connor">
                     </div>
                     <div class="my-3">
                         <label for="correo" class="form-label">Mi correo es: </label>
-                        <input type="email" class="form-control" id="correo" placeholder="cooler@estonoesunaweb.com.ar">
+                        <input name="email" type="email" class="form-control" id="correo" placeholder="cooler@estonoesunaweb.com.ar">
                     </div>
                     <div class="my-3">
                         <label for="comentario" class="form-label">Comentarios...</label>
-                        <textarea class="form-control" id="comentario" rows="3"></textarea>
+                        <textarea name="comentario" class="form-control" id="comentario" rows="3"></textarea>
                     </div>
                     <button type="submit" class="btn btn-success">Enviar <i class="fas fa-paper-plane"></i></button>
                 </form>
