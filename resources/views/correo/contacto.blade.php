@@ -13,30 +13,23 @@
         <td>&nbsp;</td>
         <td class="container">
           <div class="content">
-
-            <!-- START CENTERED WHITE CONTAINER -->
             <table role="presentation" class="main">
-
-              <!-- START MAIN CONTENT AREA -->
               <tr>
                 <td class="wrapper">
                   <table role="presentation" border="0" cellpadding="0" cellspacing="0">
                     <tr>
                       <td>
-                        <p>Alguien completó el formulario de contacto y tenía lo siguinte para decir:</p>
+                        <p><strong> {{ $contacto->nombre }} </strong>completó el formulario de contacto y tenía lo siguinte para decir:</p>
 
-                        <p>XXXX</p>
+                        <p><i>{{ $contacto->comentario }}</i></p>
+
+                        <p>Responder a: {{ $contacto->email }}</p>
                       </td>
                     </tr>
                   </table>
                 </td>
               </tr>
-
-            <!-- END MAIN CONTENT AREA -->
             </table>
-            <!-- END CENTERED WHITE CONTAINER -->
-
-            <!-- START FOOTER -->
             <div class="footer">
               <table role="presentation" border="0" cellpadding="0" cellspacing="0">
                 <tr>
@@ -46,8 +39,6 @@
                 </tr>
               </table>
             </div>
-            <!-- END FOOTER -->
-
           </div>
         </td>
         <td>&nbsp;</td>

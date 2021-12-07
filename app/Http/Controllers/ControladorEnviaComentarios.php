@@ -10,7 +10,12 @@ class ControladorEnviaComentarios extends Controller
 {
     function envia (Request $request){
 
-        Mail::to('jmlombardi@dukarevich.com.ar')->send(new Contacto);
-        return 'correo';
+        $validated = $request->validate([
+        'nombre' => 'required',
+        'email' => ['required','email'],
+        'comentario' => ['required'],
+        ]);
+        Mail::to('jmlombardi@dukarevich.com.ar')->send(new Contacto($request));
+        return redirect()->back()->with('correoOK', 'Su mensaje se ha enviado correctamente.');
     }
 }
