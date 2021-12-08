@@ -12,5 +12,6 @@
     @yield('contenido')
     </div>
     <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('assets/js/p5.min.js') }}"></script>
 </body>
 </html>

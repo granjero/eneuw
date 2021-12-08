@@ -14,8 +14,20 @@ use App\Http\Controllers\ControladorEnviaComentarios;
 |
 */
 
-Route::get('/', function () {
-    return view('inicio');
+Route::get("/", function () {
+    return view("inicio");
 });
 
-Route::post('enviarComentarios',[ControladorEnviaComentarios::class, 'envia'] );
+// Envia el correo de cometarios
+Route::post("enviarComentarios", [ControladorEnviaComentarios::class, "envia"]);
+
+// Artes
+Route::get("obscur", function () {
+    return view("arte.obscur");
+});
+Route::get("circulos", function () {
+    return view("arte.circulos");
+});
+Route::get("floralis", function () {
+    return view("arte.floralis");
+});
