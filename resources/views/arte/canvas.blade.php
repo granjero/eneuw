@@ -11,6 +11,7 @@
                 margin: 0;
                 display: flex;
                 justify-content: center;
+                align-items: center;
             }
         </style>
         <script src="{{ asset('assets/js/p5.min.js') }}"></script>
@@ -20,19 +21,3 @@
         <main> </main>
     </body>
 </html>
-
-
-
-<!--
-<style>
-    html,
-    body {
-        height: 100%;
-        margin: 0;
-        overflow: hidden;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-</style> 
--->

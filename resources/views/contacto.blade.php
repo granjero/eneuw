@@ -1,7 +1,4 @@
 <div class="card">
-    <div class="card-header">
-        <h2 class="card-title my-2"><i class="fas fa-code"></i> esto no es una web</h2>
-    </div>
     <div class="card-body">
         <p class="h5 my-2">Podés contactame por correo:
         <a class="btn btn-link" data-bs-toggle="tooltip" data-bs-placement="left" title="jm@estonoesunaweb.com.ar" href="mailto:jm@estonoesunaweb.com.ar?subject=Contacto%20esto%20no%20es%20una%20web">

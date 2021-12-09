@@ -72,9 +72,9 @@
                      <small>2019</small>
                   </div>
                   <p class="mb-1">
-                  Taraxacum officinale. O casi.
+                  Taraxacum officinale. 
                   </p>
-                  <small>And some small print.</small>
+                  <small>O casi.</small>
                   <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                      <p class="mb-1">
                         <a class="btn btn-outline-secondary" href="floralis" role="button">Ver Artegrama</a>
