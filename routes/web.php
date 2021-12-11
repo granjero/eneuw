@@ -31,3 +31,6 @@ Route::get("circulos", function () {
 Route::get("floralis", function () {
     return view("arte.floralis");
 });
+Route::get("test", function () {
+    return view("arte.test");
+});
