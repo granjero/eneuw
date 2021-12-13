@@ -12,13 +12,11 @@ function draw() {
     cmp.lineaAmarilla();
     cmp.lineaVerde();
     cmp.circuloNegro();
-    cmp.linea(4);
-    cmp.lineas();
-    cmp.lineas();
-    cmp.lineas();
-    cmp.lineas();
-    cmp.lineas();
-    cmp.lineas();
+    cmp.linea(6);
+    cmp.circuloGrande();
+    cmp.circuloGrande();
+    cmp.lineas(5);
+    cmp.circuloGrande();
 }
 
 class Composicion {
@@ -103,6 +101,35 @@ class Composicion {
         //stroke(0);
     }
 
+    anchoTrazoBordeCirculo() {
+        return floor(random(2, 7));
+    }
+
+    centroCirculo(diam) {
+        let pi = p5.Vector.random2D();
+        pi.setMag(random(this.diamCN * 0.45 - diam * .5));
+        return p5.Vector.add(this.centroCN, pi);
+    }
+
+    colorCirculo() {
+        return [
+            floor(random(255)),
+            floor(random(255)),
+            floor(random(255)),
+            floor(random(80, 150)),
+        ];
+    }
+
+    circuloGrande() {
+        let diam = random(this.diamCN / 3, this.diamCN / 2.5);
+        let centro = this.centroCirculo(diam);
+        let color = this.colorCirculo();
+        strokeWeight(2);
+        stroke(color[0], color[1], color[2]);
+        fill(color[0], color[1], color[2], color[3]);
+        circle(centro.x, centro.y, diam);
+    }
+
     anchoLineaNerga() {
         return floor(random(1, 3));
     }
@@ -123,8 +150,9 @@ class Composicion {
         return floor(random(1, 3));
     }
 
-    linea(cant) {
-        for (let i = 0; i <= cant; i++) {
+    linea(cant = 1) {
+        stroke(0);
+        for (let i = 0; i < cant; i++) {
             strokeWeight(this.anchoTrazoLineaNerga());
             let pi = this.lineaNegraPI();
             let pf = this.lineaNegraPF();
@@ -145,37 +173,71 @@ class Composicion {
         return random(2);
     }
 
-    perpendicular(pi, pf) {
-        let perpendicular = p5.Vector.fromAngle(
+    // retorna un vector unitario perpendicular al segmento pi pf
+    vectorPerpendicular(pi, pf) {
+        return p5.Vector.fromAngle(
             p5.Vector.sub(pf, pi).heading() + HALF_PI
         );
-        perpendicular.setMag(this.magnitudPerpendicular());
-        return perpendicular;
+    }
+
+    // retorna un vector unitario paralelo al segmento pi pf
+    vectorParalelo(pi, pf) {
+        return createVector(p5.Vector.sub(pf, pi).x, p5.Vector.sub(pf, pi).y);
+
     }
 
     cantLineas() {
-        return floor(random(2, 4));
+        return floor(random(2, 5));
     }
 
-    lineas() {
-        strokeWeight(this.anchoTrazoLineaNerga());
-        let pi = this.lineaNegraPI();
-        let pf = this.lineaNegraPF();
+    lineas(cant = 1) {
+        stroke(0);
+        for(let i = 0; i < cant; i++) {
+            strokeWeight(this.anchoTrazoLineaNerga());
+            let pi = this.lineaNegraPI();
+            let pf = this.lineaNegraPF();
 
-        while (pi.dist(pf) < this.diamCN * 0.5) {
-            pi = this.lineaNegraPI();
-            pf = this.lineaNegraPF();
+            while (pi.dist(pf) < this.diamCN * 0.5) {
+                pi = this.lineaNegraPI();
+                pf = this.lineaNegraPF();
+            }
+
+            let modificador = this.vectorPerpendicular(pi, pf);
+            modificador.setMag(this.magnitudPerpendicular());
+
+            for (let i = 0; i < this.cantLineas(); i++) {
+                line(pi.x, pi.y, pf.x, pf.y);
+
+                pi.x = pi.x - modificador.x;
+                pi.y = pi.y - modificador.y;
+                pf.x = pf.x - modificador.x * this.tuerceUnPoco();
+                pf.y = pf.y - modificador.y * this.tuerceUnPoco();
+            }
+
+            if(random(1) >= .6) {
+                this.lineasCortasPerpendiculares(pi, pf);
+            }
         }
+    }
 
-        let perpendicular = this.perpendicular(pi, pf);
+    lineasCortasPerpendiculares(pi, pf) {
+        let vectorParalelo = this.vectorParalelo(pi, pf);
+        let vectorPerpendicular = this.vectorPerpendicular(pi, pf);
+            vectorParalelo.setMag(random(20,30));
+        let tuerce = this.tuerceUnPoco();
+        for(let i = 0; i < this.cantLineas(); i++) {
+            vectorParalelo.add(vectorParalelo.mult(0.6));
+            vectorPerpendicular.setMag(random(20,50));
+            line(pi.x + vectorParalelo.x,
+                pi.y + vectorParalelo.y,
+                pi.x + vectorPerpendicular.x * tuerce + vectorParalelo.x,
+                pi.y + vectorPerpendicular.y * tuerce + vectorParalelo.y);
 
-        for (let i = 0; i < this.cantLineas(); i++) {
-            line(pi.x, pi.y, pf.x, pf.y);
-
-            pi.x = pi.x - perpendicular.x;
-            pi.y = pi.y - perpendicular.y;
-            pf.x = pf.x - perpendicular.x * this.tuerceUnPoco();
-            pf.y = pf.y - perpendicular.y * this.tuerceUnPoco();
+            vectorPerpendicular.setMag(random(20,50));
+            line(pi.x + vectorParalelo.x,
+                pi.y + vectorParalelo.y,
+                pi.x - vectorPerpendicular.x * tuerce + vectorParalelo.x,
+                pi.y - vectorPerpendicular.y * tuerce + vectorParalelo.y);
         }
     }
 }
