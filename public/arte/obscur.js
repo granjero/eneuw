@@ -1,3 +1,4 @@
+
 let segundos = 0;
 
 function setup() {
@@ -18,11 +19,7 @@ function draw() {
     segundos++;
 }
 
-function mousePressed() {}
-
 class Trazo {
-    // contruye los puntos iniciales y finales en el centro
-    // de la ventana
     constructor() {
         this.Pi = [floor(windowWidth / 2), floor(windowHeight / 2)];
         this.Pf = [floor(windowWidth / 2), floor(windowHeight / 2)];

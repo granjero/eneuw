@@ -9,7 +9,7 @@
                   </p>
                </blockquote>
                <figcaption class="blockquote-footer">
-                  <cite title="Source Title">AlbertEinstein</cite>
+                  <cite title="Source Title">Albert Einstein</cite>
                </figcaption>
             </figure>
          </button>
@@ -60,13 +60,16 @@
                      <small>2016</small>
                   </div>
                   <p class="mb-1">
-                    Como trabajo para una materia de la tecnicatura armé un ébolo con unos caños de pvc. 
-                    Adentro un arduino, una memoria y sensor de presión BMP085. Conectado por puerto serie a una netbook.
+                  Juego de fuerza física donde se debe presionar un émbolo que mide la presión generada y así
+                  intentar obtener el puntaje máximo.
+                  El aparato fue fabricado con tapas de caño de pvc para desagote. 
+                  La lógica la manejaba un arduino conectado a un sensor de presión BMP085 y un reloj RTC para usarle
+                  la memoria para los records. Como display se usaba la terminal serie de una netbook.
                   </p>
-                  <small class="mt-4"> El objetivo era lograr regitrar la mayor presión.</small>
+                  <small class="mt-4"> .</small>
                   <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                      <p class="mb-1">
-                        <a class="btn btn-outline-secondary" href="floralis" role="button">Ver Artegrama</a>
+                        <a class="btn btn-outline-secondary" href="" role="button">+ Info</a>
                      </p>
                   </div>
                </div>

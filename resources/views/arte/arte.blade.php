@@ -42,7 +42,10 @@
                   </small>
                   <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                      <p class="mb-1">
-                        <a class="btn btn-outline-secondary" href="obscur" role="button">Ver Artegrama</a>
+                        <a class="btn btn-outline-secondary" href="obscur" role="button">Artegrama</a>
+                        <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#modalCodigoObscur">
+                            Código
+                        </button>
                      </p>
                   </div>
                </div>
@@ -59,7 +62,10 @@
                   <small class="mt-4">Inspirado en <a href="https://commons.wikimedia.org/wiki/File:Wassily_Kandinsky_Circles_in_a_Circle.jpg" target="_blank">Circles in a Circle</a>.</small>
                   <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                      <p class="mb-1">
-                        <a class="btn btn-outline-secondary" href="circulos" role="button">Ver Artegrama</a>
+                        <a class="btn btn-outline-secondary" href="circulos" role="button">Artegrama</a>
+                        <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#modalCodigoCirculos">
+                            Código
+                        </button>
                      </p>
                   </div>
                </div>
@@ -76,7 +82,10 @@
                   <small>O casi.</small>
                   <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                      <p class="mb-1">
-                        <a class="btn btn-outline-secondary" href="floralis" role="button">Ver Artegrama</a>
+                        <a class="btn btn-outline-secondary" href="floralis" role="button">Artegrama</a>
+                        <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#modalCodigoFloralis">
+                            Código
+                        </button>
                      </p>
                   </div>
                </div>
@@ -84,3 +93,76 @@
          </div>
       </div>
    </div>
+
+    <!-- Modal Obscur -->
+    <div class="modal fade" id="modalCodigoObscur" tabindex="-1" aria-labelledby="modalCodigoObscur" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Obscur</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+          <pre>
+          <code class="language-javascript" >
+          @php
+          $codigo = file_get_contents(public_path('arte/obscur.js'));
+          echo $codigo;
+          @endphp
+          </code>
+          </pre>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Circulos -->
+    <div class="modal fade" id="modalCodigoCirculos" tabindex="-1" aria-labelledby="modalCodigoCirculos" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Circulos en un Círculo</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+          <pre>
+              <code class="language-javascript">
+                  @php
+                      readFile(public_path('arte/circulos.js'))
+                  @endphp
+              </code>
+            </pre>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Floralis -->
+    <div class="modal fade" id="modalCodigoFloralis" tabindex="-1" aria-labelledby="modalCodigoFloralis" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Floralis</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+          <pre>
+              <code class="language-javascript">
+                  @php
+                      readFile(public_path('arte/floralis.js'))
+                  @endphp
+              </code>
+            </pre>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          </div>
+        </div>
+      </div>
+    </div>

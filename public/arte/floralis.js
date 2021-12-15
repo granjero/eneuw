@@ -1,3 +1,4 @@
+
 let segundos = 0;
 
 function setup() {
@@ -28,8 +29,6 @@ function draw() {
     }
     segundos++;
 }
-
-function mousePressed() {}
 
 class Panadero {
 

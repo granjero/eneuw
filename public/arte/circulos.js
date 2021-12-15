@@ -1,38 +1,20 @@
+
+let segundos = 0;
+
 function setup() {
     windowWidth >= windowHeight
         ? createCanvas(windowHeight, windowHeight)
         : createCanvas(windowWidth, windowWidth);
     frameRate(1);
-    //noLoop();
 }
 
 function draw() {
-    let cmp = new Composicion();
-    background(cmp.colorDeFondo());
-    cmp.lineaAmarilla();
-    cmp.lineaVerde();
-    cmp.circuloNegro();
-
-    cmp.circuloInterior(1, true);
-    cmp.circuloInterior(2);
-    cmp.circuloInterior(3);
-    cmp.circuloInterior(4);
-    cmp.circuloInterior(5, true);
-    cmp.linea(6);
-    cmp.circuloInterior(1);
-    cmp.circuloInterior(2);
-    cmp.circuloInterior(3);
-    cmp.circuloInterior(4, true);
-    cmp.circuloInterior(5, true);
-    cmp.lineas(5);
-    cmp.circuloInterior(1);
-    cmp.circuloInterior(2);
-    cmp.circuloInterior(3, true);
-    cmp.circuloInterior(4, true);
-    cmp.circuloInterior(5, true);
-    cmp.circuloInterior(5, true);
-    cmp.circuloInterior(5, true);
-    cmp.circuloInterior(5, true);
+    if (segundos % 10 == 0) {
+        segundos = 1;
+        let cmp = new Composicion();
+        cmp.arte();
+    }
+    segundos++;
 }
 
 class Composicion {
@@ -112,9 +94,6 @@ class Composicion {
         stroke(0, 215);
         strokeWeight(this.anchoTrazoCirculoNegro());
         circle(this.centroCN.x, this.centroCN.y, this.diamCN);
-        //stroke(255, 100, 100);
-        //point(this.centroCN.x, this.centroCN.y);
-        //stroke(0);
     }
 
     anchoTrazoBordeCirculo() {
@@ -239,7 +218,7 @@ class Composicion {
     }
 
     cantLineas() {
-        return floor(random(2, 5));
+        return floor(random(2, 4));
     }
 
     lineas(cant = 1) {
@@ -254,6 +233,7 @@ class Composicion {
                 pf = this.lineaNegraPF();
             }
 
+
             let modificador = this.vectorPerpendicular(pi, pf);
             modificador.setMag(this.magnitudPerpendicular());
 
@@ -266,34 +246,57 @@ class Composicion {
                 pf.y = pf.y - modificador.y * this.tuerceUnPoco();
             }
 
-            if (random(1) >= 0.6) {
-                this.lineasCortasPerpendiculares(pi, pf);
+            if (random(1) >= 0.5) {
+                this.lineasPerpendiculares(pi, pf);
             }
         }
     }
 
-    lineasCortasPerpendiculares(pi, pf) {
+    lineasPerpendiculares(pi, pf) {
         let vectorParalelo = this.vectorParalelo(pi, pf);
         let vectorPerpendicular = this.vectorPerpendicular(pi, pf);
-        vectorParalelo.setMag(random(20, 30));
-        let tuerce = this.tuerceUnPoco();
+        vectorParalelo.setMag(random(width * .07, width * .15));
         for (let i = 0; i < this.cantLineas(); i++) {
-            vectorParalelo.add(vectorParalelo.mult(0.6));
-            vectorPerpendicular.setMag(random(20, 50));
+            vectorPerpendicular.setMag(random(width * .07, width * .15));
             line(
-                pi.x + vectorParalelo.x,
-                pi.y + vectorParalelo.y,
-                pi.x + vectorPerpendicular.x * tuerce + vectorParalelo.x,
-                pi.y + vectorPerpendicular.y * tuerce + vectorParalelo.y
+                pi.x + vectorPerpendicular.x + vectorParalelo.x,
+                pi.y + vectorPerpendicular.y + vectorParalelo.y,
+                pi.x - vectorPerpendicular.x + vectorParalelo.x,
+                pi.y - vectorPerpendicular.y + vectorParalelo.y
             );
-
-            vectorPerpendicular.setMag(random(20, 50));
-            line(
-                pi.x + vectorParalelo.x,
-                pi.y + vectorParalelo.y,
-                pi.x - vectorPerpendicular.x * tuerce + vectorParalelo.x,
-                pi.y - vectorPerpendicular.y * tuerce + vectorParalelo.y
-            );
+            vectorParalelo.x += random(width * .007, width * .015);
+            vectorParalelo.y += random(width * .007, width * .015);
         }
+    }
+
+    arte() {
+        background(this.colorDeFondo());
+        this.lineaAmarilla();
+        this.lineaVerde();
+        this.circuloNegro();
+
+        for (let i = 0; i < 3; i++) {
+            this.circuloInterior(1, true);
+        }
+        for (let i = 0; i < 2; i++) {
+            this.circuloInterior(2, false);
+        }
+        for (let i = 0; i < 2; i++) {
+            this.circuloInterior(3, true);
+            this.circuloInterior(3, false);
+        }
+        this.lineas(2);
+        for (let i = 0; i < 2; i++) {
+            this.circuloInterior(4, true);
+            this.circuloInterior(4, false);
+        }
+        this.linea(2);
+        this.lineas(1);
+        for (let i = 0; i < 4; i++) {
+            this.circuloInterior(5, true);
+            this.circuloInterior(5, false);
+        }
+        this.linea(2);
+        this.lineas(1);
     }
 }
