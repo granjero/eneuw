@@ -1,4 +1,3 @@
-
 let segundos = 0;
 
 function setup() {
@@ -21,8 +20,10 @@ function draw() {
 
 class Trazo {
     constructor() {
-        this.Pi = [floor(windowWidth / 2), floor(windowHeight / 2)];
-        this.Pf = [floor(windowWidth / 2), floor(windowHeight / 2)];
+        this.Pi = [ floor(windowWidth / 2),
+                    floor(windowHeight / 2)];
+        this.Pf = [ floor(windowWidth / 2),
+                    floor(windowHeight / 2)];
     }
 
     ultimaDireccion = "inicial";
@@ -47,8 +48,10 @@ class Trazo {
     // una suerte de reset para antes de cada trazo
     // :void
     centrar() {
-        this.Pi = [floor(windowWidth / 2), floor(windowHeight / 2)];
-        this.Pf = [floor(windowWidth / 2), floor(windowHeight / 2)];
+        this.Pi = [ floor(windowWidth / 2),
+                    floor(windowHeight / 2)];
+        this.Pf = [ floor(windowWidth / 2),
+                    floor(windowHeight / 2)];
     }
 
     // el nuevo punto inicial del trazo es el final del anterior
@@ -59,18 +62,23 @@ class Trazo {
 
     // :number
     largoSegmentoVertical() {
-        return floor(random(height * this.modificadorLargo));
+        return floor(random(
+            height * this.modificadorLargo));
     }
 
     // :number
     largoSegmentoHorizontal() {
-        return floor(random(width * this.modificadorLargo));
+        return floor(random(
+            width * this.modificadorLargo));
     }
 
     // un nuevo punto final para el trazo según las reglas elegidas.
     // :void
     nuevoPf() {
-        let direcciones = ["arriba", "abajo", "izquierda", "derecha"];
+        let direcciones = [ "arriba",
+                            "abajo",
+                            "izquierda",
+                            "derecha" ];
         let vert = this.largoSegmentoVertical();
         let hor = this.largoSegmentoHorizontal();
         let direccion = random(direcciones);
@@ -125,7 +133,8 @@ class Trazo {
             for (let i = 0; i <= cantidad; i++) {
                 this.nuevoPi();
                 this.nuevoPf();
-                for (let k = 0; k < cantidad - i; k++) this.dibujaSegmento();
+                for (let k = 0; k < cantidad - i; k++) 
+                    this.dibujaSegmento();
             }
         }
     }

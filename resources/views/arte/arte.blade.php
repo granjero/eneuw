@@ -103,14 +103,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-          <pre>
-          <code class="language-javascript" >
-          @php
-          $codigo = file_get_contents(public_path('arte/obscur.js'));
-          echo $codigo;
-          @endphp
-          </code>
-          </pre>
+          <pre><code class="language-javascript">{{ $codigo['obscur'] }}</code></pre>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
@@ -128,13 +121,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-          <pre>
-              <code class="language-javascript">
-                  @php
-                      readFile(public_path('arte/circulos.js'))
-                  @endphp
-              </code>
-            </pre>
+          <pre><code class="language-javascript">{{ $codigo['circulos'] }}</code></pre>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
@@ -152,13 +139,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-          <pre>
-              <code class="language-javascript">
-                  @php
-                      readFile(public_path('arte/floralis.js'))
-                  @endphp
-              </code>
-            </pre>
+          <pre><code class="language-javascript">{{ $codigo['floralis'] }}</code></pre>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>

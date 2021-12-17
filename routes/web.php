@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ControladorEnviaComentarios;
+use App\Http\Controllers\ControladorInicio;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,9 +15,11 @@ use App\Http\Controllers\ControladorEnviaComentarios;
 |
 */
 
-Route::get("/", function () {
-    return view("inicio");
-});
+//Route::get("/", function () {
+    //return view("inicio");
+//});
+
+Route::get("/", [ControladorInicio::class, 'inicio']);
 
 // Envia el correo de cometarios
 Route::post("enviarComentarios", [ControladorEnviaComentarios::class, "envia"]);

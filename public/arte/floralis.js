@@ -1,4 +1,3 @@
-
 let segundos = 0;
 
 function setup() {
