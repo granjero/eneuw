@@ -9,6 +9,7 @@
 <div class="accordion" id="accordion">
     @include('arte.arte')
     @include('juegos')
+    @include('trabajo')
 </div>
     </div>
 </div>

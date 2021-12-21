@@ -36,21 +36,21 @@
                         @error('nombre')
                             <div class="alert alert-danger my-2">{{ $message }}</div>
                         @enderror
-                        <input name="nombre" value="{{ old('nombre') }}" type="text" class="form-control" id="nombre" placeholder="Cooler O'Connor" required>
+                        <input name="nombre" value="{{ old('nombre') }}" type="text" class="form-control" id="nombre" placeholder="Cooler O'Connor">
                     </div>
                     <div class="my-3">
                         <label for="correo" class="form-label">Mi correo es: </label>
                         @error('email')
                             <div class="alert alert-danger my-2">{{ $message }}</div>
                         @enderror
-                        <input name="email" value="{{ old('email') }}" type="email" class="form-control" id="correo" placeholder="cooler@estonoesunaweb.com.ar" required>
+                        <input name="email" value="{{ old('email') }}" type="email" class="form-control" id="correo" placeholder="cooler@estonoesunaweb.com.ar">
                     </div>
                     <div class="my-3">
                         <label for="comentario" class="form-label">Comentarios...</label>
                         @error('comentario')
                             <div class="alert alert-danger my-2">{{ $message }}</div>
                         @enderror
-                        <textarea name="comentario" value="{{ old('comentario') }}" class="form-control" id="comentario" rows="3" required></textarea>
+                        <textarea name="comentario" value="{{ old('comentario') }}" class="form-control" id="comentario" rows="3"></textarea>
                     </div>
                     <button type="submit" class="btn btn-success">Enviar <i class="fas fa-paper-plane"></i></button>
                 </form>
