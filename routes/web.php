@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ControladorEnviaComentarios;
 use App\Http\Controllers\ControladorInicio;
+use App\Http\Controllers\ControladorPreciosMercado;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +35,5 @@ Route::get("circulos", function () {
 Route::get("floralis", function () {
     return view("arte.floralis");
 });
-Route::get("test", function () {
-    return view("arte.test");
-});
+
+Route::get("test", [ControladorPreciosMercado::class, 'precios']);
