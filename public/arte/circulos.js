@@ -114,31 +114,21 @@ class Composicion {
         ];
     }
 
-    circuloGrande() {
-        let diam = random(this.diamCN / 4, this.diamCN / 3.5);
-        let centro = this.centroCirculo(diam);
-        let color = this.colorCirculo();
-        strokeWeight(2);
-        stroke(color[0], color[1], color[2]);
-        fill(color[0], color[1], color[2], color[3]);
-        circle(centro.x, centro.y, diam);
-    }
-
     tamanioCirculo(tamanio) {
         switch (tamanio) {
-            case 1:
+            case 'grande':
                 return random(this.diamCN / 4, this.diamCN / 3);
 
-            case 2:
+            case 'mediano':
                 return random(this.diamCN / 6, this.diamCN / 5);
 
-            case 3:
+            case 'chico':
                 return random(this.diamCN / 8, this.diamCN / 7);
 
-            case 4:
+            case 'muy_chico':
                 return random(this.diamCN / 15, this.diamCN / 13);
 
-            case 5:
+            case 'infimo':
                 return random(this.diamCN / 30, this.diamCN / 25);
 
             default:
@@ -275,25 +265,25 @@ class Composicion {
         this.circuloNegro();
 
         for (let i = 0; i < 3; i++) {
-            this.circuloInterior(1, true);
+            this.circuloInterior('grande', true);
         }
         for (let i = 0; i < 2; i++) {
-            this.circuloInterior(2, false);
+            this.circuloInterior('mediano', false);
         }
         for (let i = 0; i < 2; i++) {
-            this.circuloInterior(3, true);
-            this.circuloInterior(3, false);
+            this.circuloInterior('chico', true);
+            this.circuloInterior('chico', false);
         }
         this.lineas(2);
         for (let i = 0; i < 2; i++) {
-            this.circuloInterior(4, true);
-            this.circuloInterior(4, false);
+            this.circuloInterior('muy_chico', true);
+            this.circuloInterior('muy_chico', false);
         }
         this.linea(2);
         this.lineas(1);
         for (let i = 0; i < 4; i++) {
-            this.circuloInterior(5, true);
-            this.circuloInterior(5, false);
+            this.circuloInterior('infimo', true);
+            this.circuloInterior('infimo', false);
         }
         this.linea(2);
         this.lineas(1);
