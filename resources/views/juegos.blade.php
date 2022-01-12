@@ -26,9 +26,9 @@
                   </div>
                   <p class="mb-2">
                   Para tener una excusa y hacer videollamadas con amigos cuando nos tuvimos que aislar por la pandemia de COVID-19 
-                  programé un juego de mesa que jugábamos cuando nos podíamos ver las caras.
+                  programé un juego de mesa que jugábamos cuando podíamos vernos las caras.
                   </p>
-                     <small>No estoy muy orgulloso del código. Pero anda.</small>
+                     <small>Esta fue mi primera aproximación a JavaScript, así que el código es medio raro.</small>
                   <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                      <p class="mb-1">
                         <a class="btn btn-outline-secondary" href="https://porunacasilla.com.ar" target="_blank" role="button">Jugar</a>

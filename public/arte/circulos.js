@@ -22,6 +22,7 @@ class Composicion {
         this.centroCN = this.centroCirculoNegro();
         this.diamCN = this.diametroCirculoNegro();
         this.anchoTrazoCN = this.anchoTrazoCirculoNegro();
+        this.ultimoCentro = this.centroCN;
     }
 
     colorDeFondo() {
@@ -102,7 +103,17 @@ class Composicion {
     centroCirculo(diam) {
         let pi = p5.Vector.random2D();
         pi.setMag(random(this.diamCN * 0.45 - diam * 0.5));
-        return p5.Vector.add(this.centroCN, pi);
+        let centro = p5.Vector.add(this.centroCN, pi);
+        let resta = p5.Vector.sub(centro, this.ultimoCentro);
+        // evita que los circulos se hagan muy pegados.
+        while(Math.abs(resta.x) < this.diamCN * .25 &&  Math.abs(resta.y) < this.diamCN * .25) {
+            pi = p5.Vector.random2D();
+            pi.setMag(random(this.diamCN * 0.45 - diam * 0.5));
+            centro = p5.Vector.add(this.centroCN, pi);
+            resta = p5.Vector.sub(centro, this.ultimoCentro);
+        }
+        console.log(this.ultimoCentro);
+        return this.ultimoCentro = p5.Vector.add(this.centroCN, pi);
     }
 
     colorCirculo() {
