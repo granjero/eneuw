@@ -1,8 +1,6 @@
 <div class="card">
     <div class="card-body">
-        <p class="h5 my-2">Podés contactame por correo:
-        <a class="btn btn-link" data-bs-toggle="tooltip" data-bs-placement="left" title="jm@estonoesunaweb.com.ar" href="mailto:jm@estonoesunaweb.com.ar?subject=Contacto%20esto%20no%20es%20una%20web">
-        <i class="h3 fas fa-envelope"></i></a>o completando el Formulario:<button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#modalFormularioContacto">
+        <p class="h5 my-2">Podés contactarme completando el Formulario:<button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#modalFormularioContacto">
         <i class="h3 fas fa-edit"></i>
         </button>
     </p>

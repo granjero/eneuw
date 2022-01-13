@@ -16,6 +16,7 @@
       </h2>
       <div id="collapseJuegos" class="accordion-collapse collapse" aria-labelledby="juegos" data-bs-parent="#accordion">
          <div class="accordion-body">
+         <p class="my-2">Acá hay un poco de programación, un poco de dev-ops, un poco de sysadmin...</p>
             <div class="list-group">
                <div class="list-group-item list-group-item-action" aria-current="true">
                   <div class="d-flex w-100 justify-content-between">
@@ -25,10 +26,11 @@
                      <small>2020</small>
                   </div>
                   <p class="mb-2">
-                  Para tener una excusa y hacer videollamadas con amigos cuando nos tuvimos que aislar por la pandemia de COVID-19 
-                  programé un juego de mesa que jugábamos cuando podíamos vernos las caras.
+                  Este juego fue progrmado durante el 1er aislamiento de la pandemia de COVID-19. 
+                  Es la digitalización de un juego de mesa que jugaba con amigos.
                   </p>
-                     <small>Esta fue mi primera aproximación a JavaScript, así que el código es medio raro.</small>
+                  <small>Esta fue mi primera aproximación a JavaScript, <br>así que el código es medio raro. 
+                  <br>En el repositorio no está la lógica de la DB. ¯\_(ツ)_/¯ </small>
                   <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                      <p class="mb-1">
                         <a class="btn btn-outline-secondary" href="https://porunacasilla.com.ar" target="_blank" role="button">Jugar</a>
@@ -49,7 +51,7 @@
                   <small class="mt-4">Lo más complejo fue instalar los bots de <a href="http://rcbot.bots-united.com/" target="_blank">RCBOT </a></small>
                   <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                      <p class="mb-1">
-                        <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#modalCodigoFuerzaCanejo">
+                        <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#modalEstacionDePoder">
                            + Info 
                         </button>
                      </p>
@@ -82,8 +84,8 @@
          </div>
       </div>
    </div>
-    <!-- Modal fuerzaCanejo -->
-    <div class="modal fade" id="modalCodigoFuerzaCanejo" tabindex="-1" aria-labelledby="modalCodigoFuerzaCanejo" aria-hidden="true">
+    <!-- Modal Estacion de Poder -->
+    <div class="modal fade" id="modalEstacionDePoder" tabindex="-1" aria-labelledby="modalEstacionDePoder" aria-hidden="true">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
@@ -210,7 +212,7 @@ dodsserver@ath ~
     </div>
 
     <!-- Modal DoD -->
-    <div class="modal fade" id="modalDoD" tabindex="-1" aria-labelledby="modalDoD" aria-hidden="true">
+    <div class="modal fade" id="modalCodigoFuerzaCanejo" tabindex="-1" aria-labelledby="modalCodigoFuerzaCanejo" aria-hidden="true">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">

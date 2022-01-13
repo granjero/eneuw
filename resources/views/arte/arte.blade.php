@@ -17,7 +17,7 @@
       <div id="collapseArte" class="accordion-collpse collapse" aria-labelledby="arte" data-bs-parent="#accordion">
          <div class="accordion-body">
             <h6 class="my-1">
-               Me gustaría poder decir que lo que sigue es arte. Pero no sé si me animo.
+               Me gustaría poder decir que soy un artista y que lo que sigue es arte. Pero no sé si me animo.
             </h6>
             <p class="my-2">
                Llamaré <i>artegramas</i> a estos pequeños programas. 
@@ -42,7 +42,7 @@
                   </small>
                   <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                      <p class="mb-1">
-                        <a class="btn btn-outline-secondary" href="obscur" role="button">Artegrama</a>
+                        <a class="btn btn-outline-secondary" href="obscur" target="_blank" role="button">Artegrama</a>
                         <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#modalCodigoObscur">
                             Código
                         </button>
@@ -62,7 +62,7 @@
                   <small class="mt-4">Inspirado en <a href="https://commons.wikimedia.org/wiki/File:Wassily_Kandinsky_Circles_in_a_Circle.jpg" target="_blank">Circles in a Circle</a>.</small>
                   <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                      <p class="mb-1">
-                        <a class="btn btn-outline-secondary" href="circulos" role="button">Artegrama</a>
+                        <a class="btn btn-outline-secondary" href="circulos" target="_blank" role="button">Artegrama</a>
                         <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#modalCodigoCirculos">
                             Código
                         </button>
@@ -82,7 +82,7 @@
                   <small>O casi.</small>
                   <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                      <p class="mb-1">
-                        <a class="btn btn-outline-secondary" href="floralis" role="button">Artegrama</a>
+                        <a class="btn btn-outline-secondary" href="floralis" target="_blank" role="button">Artegrama</a>
                         <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#modalCodigoFloralis">
                             Código
                         </button>
