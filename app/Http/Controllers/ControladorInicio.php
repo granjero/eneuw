@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 //use Illuminate\Http\Request;
 use App\Http\Controllers\ControladorPreciosMercado;
+use App\Http\Controllers\ControladorCadaverExquisito;
 class ControladorInicio extends Controller
 {
     //
@@ -19,6 +20,11 @@ class ControladorInicio extends Controller
         $codigo["fuerzaCanejo"] = file_get_contents(
             "https://raw.githubusercontent.com/granjero/FuerzaCanejo/master/src/FuerzaCanejo.ino"
         );
-        return view("inicio")->with("codigo", $codigo);
+        $muerto = new ControladorCadaverExquisito();
+
+        $cadaver["ultimaPalabra"] = $muerto->ultimaPalabraCadaverExquisito();
+        return view("inicio")
+            ->with("codigo", $codigo)
+            ->with("cadaver", $cadaver);
     }
 }

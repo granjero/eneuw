@@ -20,6 +20,43 @@
                <div class="list-group-item list-group-item-action" aria-current="true">
                   <div class="d-flex w-100 justify-content-between">
                      <h5 class="mb-1">
+                     API de Google
+                     </h5>
+                     <small>2022</small>
+                  </div>
+                  <p class="mb-2">
+                  Necesitaban actualizar automáticamente una hoja de cálculo que compratían en la cuenta de google. Se consultaba la base de datos y con el resultado de esa consulta se actualizaba el documento con la API de google. Para acá hice un cadaver exquisito. Para participar tenés que escribir una oración que empiece con la palabra que ya vas a ver escrita. Es la última palabra de la ultima oración.
+                  </p>
+                     <small> <a href="https://es.wikipedia.org/wiki/Cad%C3%A1ver_exquisito" target="_blank">Cadaver Exquisito.</a> </small>
+                     <p class="my-2">
+                            <a class="btn btn-outline-secondary" data-bs-toggle="collapse" href="#collapseCadaver" role="button" aria-expanded="false" aria-controls="collapseCadaver">
+                            Participar
+                            </a>
+                            </p>
+                            <div class="collapse my-2" id="collapseCadaver">
+                            <div class="card card-body">
+                            <form action="cadaverExquisito" method="POST">
+                            @csrf
+                            <label class="sr-only" for="inlineFormInputGroup">...</label>
+                              <div class="input-group mb-2">
+                                <div class="input-group-prepend">
+                                  <div class="input-group-text">{{ $cadaver["ultimaPalabra"] }}</div>
+                                </div>
+                                <input type="text" class="form-control" name="oracion" id="oracion" placeholder="...">
+                              </div>
+                                    <button type="submit" class="btn btn-primary mb-2">Enviar mi oración y ver el cadáver.</button>
+
+                            </form>
+                            </div>
+                            </div>
+                  <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                  </div>
+               </div>
+            </div>
+            <div class="list-group">
+               <div class="list-group-item list-group-item-action" aria-current="true">
+                  <div class="d-flex w-100 justify-content-between">
+                     <h5 class="mb-1">
                      Precios del Mercado de Granos.
                      </h5>
                      <small>2020</small>
