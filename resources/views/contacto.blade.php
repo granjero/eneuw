@@ -4,7 +4,7 @@
         <i class="h3 fas fa-edit"></i>
         </button>
     </p>
-    @if ($errors->any())
+    @if ($errors->has('nombre') || $errors->has('email') || $errors->has('comentario'))
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
             <i class="fas fa-exclamation-triangle"></i> <strong>Error</strong> en el formulario de correo! Intente nuevamente.
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>

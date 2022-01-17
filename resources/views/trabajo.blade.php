@@ -1,4 +1,10 @@
    <div class="accordion-item">
+    @if ($errors->has('oracion'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <i class="fas fa-exclamation-triangle"></i> <strong>Error</strong> en el cadáver! Intente nuevamente.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
       <h2 class="accordion-header" id="trabajo">
          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTrabajo"
             aria-expanded="false" aria-controls="collapseTrabajo">
@@ -25,9 +31,13 @@
                      <small>2022</small>
                   </div>
                   <p class="mb-2">
-                  Necesitaban actualizar automáticamente una hoja de cálculo que compratían en la cuenta de google. Se consultaba la base de datos y con el resultado de esa consulta se actualizaba el documento con la API de google. Para acá hice un cadaver exquisito. Para participar tenés que escribir una oración que empiece con la palabra que ya vas a ver escrita. Es la última palabra de la ultima oración.
+                  Necesitaban actualizar automáticamente una hoja de cálculo que compratían en la cuenta de google. 
+                  <br>Hice un script que se ejecutaba con cron y consultaba la base de datos. 
+                  <br>Con el resultado de esa consulta se actualizaba el documento con la API de google. 
+                  <br>Acá hice un cadaver exquisito, me pareció más divertido.
+                  <br>Para participar tenés que escribir una oración que empiece con la palabra que ya vas a ver escrita. 
                   </p>
-                     <small> <a href="https://es.wikipedia.org/wiki/Cad%C3%A1ver_exquisito" target="_blank">Cadaver Exquisito.</a> </small>
+                     <small> <a href="https://es.wikipedia.org/wiki/Cad%C3%A1ver_exquisito" target="_blank">¿Qué es un Cadaver Exquisito?</a> </small>
                      <p class="my-2">
                             <a class="btn btn-outline-secondary" data-bs-toggle="collapse" href="#collapseCadaver" role="button" aria-expanded="false" aria-controls="collapseCadaver">
                             Participar
@@ -42,9 +52,9 @@
                                 <div class="input-group-prepend">
                                   <div class="input-group-text">{{ $cadaver["ultimaPalabra"] }}</div>
                                 </div>
-                                <input type="text" class="form-control" name="oracion" id="oracion" placeholder="...">
+                                <input type="text" class="form-control" name="oracion" id="oracion" value="{{ old('oracion') }}"  placeholder="...">
                               </div>
-                                    <button type="submit" class="btn btn-primary mb-2">Enviar mi oración y ver el cadáver.</button>
+                                    <button type="submit" class="btn btn-primary mb-2">Enviar mi oración y ver el cadáver</button>
 
                             </form>
                             </div>

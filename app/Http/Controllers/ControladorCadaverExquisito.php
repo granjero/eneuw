@@ -27,9 +27,9 @@ class ControladorCadaverExquisito extends Controller
             $this->spreadsheetID,
             $rango
         );
-        $valores = $respuesta->getValues();
+        $cadaver = $respuesta->getValues();
 
-        return var_dump($valores);
+        return $cadaver;
     }
 
     function ultimaOracionCadaverExquisito()
@@ -60,7 +60,8 @@ class ControladorCadaverExquisito extends Controller
     function agregaOracionCadaverExquisito(Request $request)
     {
         $rango = "CadaverExquisito";
-        $valores = [[$request->input("oracion")]];
+        $request->validate(['oracion' => 'required']);
+        $valores = [[$this->ultimaPalabraCadaverExquisito() . ' ' . trim($request->input("oracion"))]];
         $cuerpo = new \Google_Service_Sheets_ValueRange([
             "values" => $valores,
         ]);
@@ -70,13 +71,15 @@ class ControladorCadaverExquisito extends Controller
         $insertar = [
             "insertDataOption" => "INSERT_ROWS",
         ];
-        $respuesta = $this->googleSheetService()->spreadsheets_values->append(
+        $this->googleSheetService()->spreadsheets_values->append(
             $this->spreadsheetID,
             $rango,
             $cuerpo,
             $parametros,
             $insertar
         );
-        return var_dump($valores);
+        $cadaver = $this->leeCadaverExquisito();
+        //return var_dump($valores);
+        return view("cadaver")->with('cadaver', $cadaver);
     }
 }
