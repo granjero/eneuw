@@ -1,6 +1,6 @@
 <div class="card">
     <div class="card-body">
-        <p class="h5 my-2">Podés contactarme completando el Formulario:<button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#modalFormularioContacto">
+        <p class="h5 my-2"> Contactame completando el formulario:<button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#modalFormularioContacto">
         <i class="h3 fas fa-edit"></i>
         </button>
     </p>
@@ -34,21 +34,21 @@
                         @error('nombre')
                             <div class="alert alert-danger my-2">{{ $message }}</div>
                         @enderror
-                        <input name="nombre" value="{{ old('nombre') }}" type="text" class="form-control" id="nombre" placeholder="Cooler O'Connor">
+                        <input name="nombre" value="{{ old('nombre') }}" type="text" class="form-control" id="nombre" placeholder="Cooler O'Connor" required>
                     </div>
                     <div class="my-3">
                         <label for="correo" class="form-label">Mi correo es: </label>
                         @error('email')
                             <div class="alert alert-danger my-2">{{ $message }}</div>
                         @enderror
-                        <input name="email" value="{{ old('email') }}" type="email" class="form-control" id="correo" placeholder="cooler@estonoesunaweb.com.ar">
+                        <input name="email" value="{{ old('email') }}" type="email" class="form-control" id="correo" placeholder="cooler@estonoesunaweb.com.ar" required>
                     </div>
                     <div class="my-3">
                         <label for="comentario" class="form-label">Comentarios...</label>
                         @error('comentario')
                             <div class="alert alert-danger my-2">{{ $message }}</div>
                         @enderror
-                        <textarea name="comentario" value="{{ old('comentario') }}" class="form-control" id="comentario" rows="3"></textarea>
+                        <textarea name="comentario" value="{{ old('comentario') }}" class="form-control" id="comentario" rows="3"></textarea required>
                     </div>
                     <button type="submit" class="btn btn-success">Enviar <i class="fas fa-paper-plane"></i></button>
                 </form>
