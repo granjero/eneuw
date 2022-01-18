@@ -36,6 +36,9 @@ Route::get("circulos", function () {
 Route::get("floralis", function () {
     return view("arte.floralis");
 });
+Route::get("viento", function () {
+    return view("arte.viento");
+});
 
 Route::post("cadaverExquisito", [
     ControladorCadaverExquisito::class,
