@@ -72,12 +72,12 @@
                      <small>2020</small>
                   </div>
                   <p class="mb-2">
-                  Necesitaban cargar las corizaciones de los granos en los diferentes puertos.
-                  Sólo la Cámara Arbitral de la Bolsa de Cereales de Bs As tiene API para consultar los precios. 
-                  Las Cámaras de Bahía Blanca y Rosario no. Hice un script para escrapearlas directo de las paginas
-                  las cámaras.
+                  Necesitaban cargar las cotizaciones de los granos en los diferentes puertos.
+                  Sólo la Cámara Arbitral de la Bolsa de Cereales de Bs As tiene API para consultarlos. 
+                  Las Cámaras de Bahía Blanca y Rosario no. Hice un script para escrapear los valores directo
+                  de las paginas las cámaras.
                   </p>
-                     <small>En la empresa los precios iban a parar a una base de datos acá hice unas tablas para verlos.</small>
+                     <small>En la empresa los precios iban a parar a una base de datos, acá hice unas tablas para verlos.</small>
                      <p class="my-2">
                      <a href="preciosDelMercadoDeGranos" class="btn btn-outline-secondary">Ver Precios</a>
                             </p>
