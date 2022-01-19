@@ -72,25 +72,15 @@
                      <small>2020</small>
                   </div>
                   <p class="mb-2">
-                  Sólo la Cámara Arbitral de la Bolsa de Cereales de Bs As tiene API para consultar los precios. Las Cámaras
-                  de Bahía Blanca y Rosario no Así que hubo que escrapearlas.
+                  Necesitaban cargar las corizaciones de los granos en los diferentes puertos.
+                  Sólo la Cámara Arbitral de la Bolsa de Cereales de Bs As tiene API para consultar los precios. 
+                  Las Cámaras de Bahía Blanca y Rosario no. Hice un script para escrapearlas directo de las paginas
+                  las cámaras.
                   </p>
-                     <small>Los precios iban a parar a una base de datos.</small>
+                     <small>En la empresa los precios iban a parar a una base de datos acá hice unas tablas para verlos.</small>
                      <p class="my-2">
-                            <a class="btn btn-outline-secondary" data-bs-toggle="collapse" href="#collapsePrecios" role="button" aria-expanded="false" aria-controls="collapsePrecios">
-                            Ver precios.
-                            </a>
+                     <a href="preciosDelMercadoDeGranos" class="btn btn-outline-secondary">Ver Precios</a>
                             </p>
-                            <div class="collapse my-2" id="collapsePrecios">
-                            <div class="card card-body">
-                            Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
-                            </div>
-                            </div>
-                  <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                     <p class="mb-1">
-                        <a class="btn btn-outline-secondary" href="correoPrecios" role="button">Recibir precios por mail</a>
-                     </p>
-                  </div>
                </div>
             </div>
          </div>

@@ -7,18 +7,26 @@ use Illuminate\Http\Request;
 
 class ControladorPreciosMercado extends Controller
 {
+    private $array = [];
+
     function precios() {
-        echo "<pre>";
-        dump($this->cabcbue());
-        dump($this->cacbb());
-        dump($this->cacbcr());
+        $this->cabcbue();
+        $this->cacbb();
+        $this->cacbcr();
+        return view('precios')->with('array', $this->array);
     }
 
     // cámara arbitral de la bolsa de cereales de buenos aires
     function cabcbue() {
         $url = 'http://www.cabcbue.com.ar/webapi/Home/PrecioHoy';
-        $json = file_get_contents($url);
-        return json_decode($json);
+        $json = json_decode(file_get_contents($url));
+        for($i = 0; $i < count($json->Precios); $i++) {
+            array_push($this->array, ["puerto" => "Dársena Bs. As.",
+                                      "producto" => $json->Precios[$i]->Producto,
+                                      "dolar" => $json->Precios[$i]->DolarDarsenaEstimado,
+                                      "peso" => $json->Precios[$i]->PesosDarsenaEstimado]);
+        }
+        return $json;
     }
 
     // cámara arbitral de cereales de bahia blanca
@@ -58,6 +66,13 @@ class ControladorPreciosMercado extends Controller
             }
             $tablaBahia[] = $celdaHtml;
         }
+
+        for($i = 0; $i < count($tablaBahia[0]); $i++) {
+            array_push($this->array, ["puerto" => "Bahía Blanca",
+                                      "producto" => $tablaBahia[0][$i]['Cereal'],
+                                      "dolar" => floatval(trim($tablaBahia[0][$i]['u$s'])),
+                                      "peso" => floatval(trim($tablaBahia[0][$i]['$']))]);
+        }
         return $tablaBahia;
     }
 
@@ -92,6 +107,18 @@ class ControladorPreciosMercado extends Controller
            $datosPrecio[$titulosTabla[$i]][] = utf8_decode(trim($valor->textContent));
            $datosPrecio[$titulosTabla[$i]][] = utf8_decode(trim($divPriceSC[$llave]->textContent));
            $i++;
+        }
+        foreach($datosPrecio as $producto => $precios) {
+            $pesos = $precios[0] == "S/C" 
+                ? substr($precios[1], strpos($precios[1], '$') +1 , strlen($precios[1])) 
+                : substr($precios[0], strpos($precios[0], '$') +1 , strlen($precios[0])); 
+            $pesos = str_replace('.', '', $pesos);
+                 
+
+            array_push($this->array, ["puerto" => "Rosario",
+                                      "producto" => $producto,
+                                      "dolar" => 0,
+                                      "peso" => floatval($pesos)]);
         }
         return $datosPrecio;
     }

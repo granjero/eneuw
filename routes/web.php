@@ -1,10 +1,10 @@
 <?php
 
-use App\Http\Controllers\ControladorCadaverExquisito;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ControladorEnviaComentarios;
 use App\Http\Controllers\ControladorInicio;
 use App\Http\Controllers\ControladorPreciosMercado;
+use App\Http\Controllers\ControladorCadaverExquisito;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,10 +16,6 @@ use App\Http\Controllers\ControladorPreciosMercado;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-//Route::get("/", function () {
-//return view("inicio");
-//});
 
 Route::get("/", [ControladorInicio::class, "inicio"]);
 
@@ -40,12 +36,14 @@ Route::get("viento", function () {
     return view("arte.viento");
 });
 
-Route::post("cadaverExquisito", [
-    ControladorCadaverExquisito::class,
-    "agregaOracionCadaverExquisito",
-]);
-//Route::get("test", [ControladorPreciosMercado::class, 'precios']);
-Route::get("test", [
-    ControladorCadaverExquisito::class,
-    "ultimaPalabraCadaverExquisito",
-]);
+// cosas
+Route::post("cadaverExquisito", [ControladorCadaverExquisito::class, "agregaOracionCadaverExquisito"]);
+
+Route::get("preciosDelMercadoDeGranos", [ControladorPreciosMercado::class, "precios"]);
+
+Route::get("test", [ControladorPreciosMercado::class, "precios"]);
+
+//Route::get("test", [
+    //ControladorCadaverExquisito::class,
+    //"ultimaPalabraCadaverExquisito",
+//]);

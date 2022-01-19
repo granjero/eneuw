@@ -17,7 +17,8 @@
       <div id="collapseArte" class="accordion-collpse collapse" aria-labelledby="arte" data-bs-parent="#accordion">
          <div class="accordion-body">
             <h6 class="my-1">
-               Me gustaría poder decir que soy un artista y que lo que sigue es arte. Pero no sé si me animo.
+            Me gustaría poder decir que soy un artista y que lo que sigue es arte; pero no sé si me animo.
+            Aunque un mecenas no me vendría mal.
             </h6>
             <p class="my-2">
                Llamaré <i>artegramas</i> a estos pequeños programas. 
