@@ -12,7 +12,7 @@ class ControladorPreciosMercado extends Controller
     function precios() {
         $this->cabcbue();
         $this->cacbb();
-        $this->cacbcr();
+        //$this->cacbcr();
         return view('precios')->with('array', $this->array);
     }
 
