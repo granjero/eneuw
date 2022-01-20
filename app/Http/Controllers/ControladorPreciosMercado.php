@@ -7,15 +7,16 @@ use Illuminate\Http\Request;
 
 class ControladorPreciosMercado extends Controller
 {
-    private $array = [];
+    private $array = ["darsena" => [], "bahia" => [], "rosario" => []];
 
     function precios()
     {
         $this->cabcbue();
         $this->cacbb();
         $this->cacbcr();
-        
-        //var_dump($this->cacbcr());
+
+        //echo "<pre>";
+        //var_dump($this->array);
         return view("precios")->with("array", $this->array);
     }
 
@@ -25,11 +26,14 @@ class ControladorPreciosMercado extends Controller
         $url = "http://www.cabcbue.com.ar/webapi/Home/PrecioHoy";
         $json = json_decode(file_get_contents($url));
         for ($i = 0; $i < count($json->Precios); $i++) {
-            array_push($this->array, [
-                "puerto" => "Dársena Bs. As.",
+            array_push($this->array["darsena"], [
+                "puerto" => "Puerto de Buenos Aires (Dársena)",
                 "producto" => $json->Precios[$i]->Producto,
                 "dolar" => $json->Precios[$i]->DolarDarsenaEstimado,
                 "peso" => $json->Precios[$i]->PesosDarsenaEstimado,
+                "url" => $url,
+                "camara" =>
+                    "Cámara Arbitral de la Bolsa de Cereales de Buenos Aires.",
             ]);
         }
         return $json;
@@ -77,11 +81,13 @@ class ControladorPreciosMercado extends Controller
         }
 
         for ($i = 0; $i < count($tablaBahia[0]); $i++) {
-            array_push($this->array, [
-                "puerto" => "Bahía Blanca",
+            array_push($this->array["bahia"], [
+                "puerto" => "Puerto de Bahía Blanca",
                 "producto" => $tablaBahia[0][$i]["Cereal"],
                 "dolar" => floatval(trim($tablaBahia[0][$i]['u$s'])),
                 "peso" => floatval(trim($tablaBahia[0][$i]['$'])),
+                "url" => $url,
+                "camara" => "Cámara Arbitral de Cereales de Bahía Blanca",
             ]);
         }
         return $tablaBahia;
@@ -90,13 +96,7 @@ class ControladorPreciosMercado extends Controller
     // cámara arbitral de cereales bolsa de comercio de rosario
     function cacbcr()
     {
-        //$url = "https://www.cac.bcr.com.ar/es/precios-de-pizarra";
-        //$dom = new DomDocument();
-        //$dom->loadHTML($this->html_cacbcr(), LIBXML_NOERROR);
-        //$finder = new \DomXPath($dom);
-        //$divRow = $finder->query("//div[contains(@class, 'row')]");
-        //$tablas = $dom->saveXML($divRow[0]);
-
+        $url = "https://www.cac.bcr.com.ar/es/precios-de-pizarra";
         $dom = new DOMDocument();
         $dom->loadHTML($this->html_cacbcr(), LIBXML_NOERROR);
         $finder = new \DomXPath($dom);
@@ -114,8 +114,10 @@ class ControladorPreciosMercado extends Controller
 
         $i = 0;
         foreach ($divPrice as $llave => $valor) {
-            $datosPrecio[$titulosTabla[$i]][] = trim($valor->textContent) ;
-            $datosPrecio[$titulosTabla[$i]][] = trim($divPriceSC[$llave]->textContent);
+            $datosPrecio[$titulosTabla[$i]][] = trim($valor->textContent);
+            $datosPrecio[$titulosTabla[$i]][] = trim(
+                $divPriceSC[$llave]->textContent
+            );
             $i++;
         }
         foreach ($datosPrecio as $producto => $precios) {
@@ -133,11 +135,14 @@ class ControladorPreciosMercado extends Controller
                     );
             $pesos = str_replace(".", "", $pesos);
 
-            array_push($this->array, [
-                "puerto" => "Rosario",
+            array_push($this->array["rosario"], [
+                "puerto" => "Puerto de Rosario",
                 "producto" => $producto,
                 "dolar" => 0,
                 "peso" => floatval($pesos),
+                "url" => $url,
+                "camara" =>
+                    "Cámara Arbitral de Cereales de la Bolsa de Rosario",
             ]);
         }
         return $datosPrecio;
@@ -166,9 +171,9 @@ class ControladorPreciosMercado extends Controller
         );
 
         $datosPrecio = substr(
-        $datosPrecio,
-        0,
-        strpos($datosPrecio, "<small>Córdoba 1402")
+            $datosPrecio,
+            0,
+            strpos($datosPrecio, "<small>Córdoba 1402")
         );
 
         return $datosPrecio;
