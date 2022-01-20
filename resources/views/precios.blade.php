@@ -14,9 +14,9 @@
         <table class="table table-sm">
             <thead>
                 <tr>
-                    <th scope="col">Cereal</th>
-                    <th scope="col">Precio en Dólares</th>
-                    <th scope="col">Precio en Pesos</th>
+                    <th style="width: 33.33%" scope="col">Cereal</th>
+                    <th style="width: 33.33%" scope="col">Precio en Dólares</th>
+                    <th style="width: 33.33%" scope="col">Precio en Pesos</th>
                 </tr>
             </thead>
             <tbody>
@@ -36,9 +36,9 @@
         <table class="table table-sm">
             <thead>
                 <tr>
-                    <th scope="col">Cereal</th>
-                    <th scope="col">Precio en Dólares</th>
-                    <th scope="col">Precio en Pesos</th>
+                    <th style="width: 33.33%" scope="col">Cereal</th>
+                    <th style="width: 33.33%" scope="col">Precio en Dólares</th>
+                    <th style="width: 33.33%" scope="col">Precio en Pesos</th>
                 </tr>
             </thead>
             <tbody>
@@ -58,9 +58,9 @@
         <table class="table table-sm">
             <thead>
                 <tr>
-                    <th scope="col">Cereal</th>
-                    <th scope="col">Precio en Dólares</th>
-                    <th scope="col">Precio en Pesos</th>
+                    <th style="width: 33.33%" scope="col">Cereal</th>
+                    <th style="width: 33.33%" scope="col">Precio en Dólares</th>
+                    <th style="width: 33.33%" scope="col">Precio en Pesos</th>
                 </tr>
             </thead>
             <tbody>

@@ -11,12 +11,12 @@ class ControladorPreciosMercado extends Controller
 
     function precios()
     {
-        //$this->cabcbue();
-        //$this->cacbb();
-        //$this->cacbcr();
-        //
-        var_dump($this->html_cacbcr());
-        //return view("precios")->with("array", $this->array);
+        $this->cabcbue();
+        $this->cacbb();
+        $this->cacbcr();
+        
+        //var_dump($this->cacbcr());
+        return view("precios")->with("array", $this->array);
     }
 
     // cámara arbitral de la bolsa de cereales de buenos aires
@@ -90,15 +90,15 @@ class ControladorPreciosMercado extends Controller
     // cámara arbitral de cereales bolsa de comercio de rosario
     function cacbcr()
     {
-        $url = "https://www.cac.bcr.com.ar/es/precios-de-pizarra";
-        $dom = new DomDocument();
-        $dom->loadHTML($this->html_cacbcr(), LIBXML_NOERROR);
-        $finder = new \DomXPath($dom);
-        $divRow = $finder->query("//div[contains(@class, 'row')]");
-        $tablas = $dom->saveXML($divRow[0]);
+        //$url = "https://www.cac.bcr.com.ar/es/precios-de-pizarra";
+        //$dom = new DomDocument();
+        //$dom->loadHTML($this->html_cacbcr(), LIBXML_NOERROR);
+        //$finder = new \DomXPath($dom);
+        //$divRow = $finder->query("//div[contains(@class, 'row')]");
+        //$tablas = $dom->saveXML($divRow[0]);
 
         $dom = new DOMDocument();
-        $dom->loadHTML($tablas, LIBXML_NOERROR);
+        $dom->loadHTML($this->html_cacbcr(), LIBXML_NOERROR);
         $finder = new \DomXPath($dom);
         $titulos = $finder->query("//h3");
 
@@ -114,12 +114,8 @@ class ControladorPreciosMercado extends Controller
 
         $i = 0;
         foreach ($divPrice as $llave => $valor) {
-            $datosPrecio[$titulosTabla[$i]][] = utf8_decode(
-                trim($valor->textContent)
-            );
-            $datosPrecio[$titulosTabla[$i]][] = utf8_decode(
-                trim($divPriceSC[$llave]->textContent)
-            );
+            $datosPrecio[$titulosTabla[$i]][] = trim($valor->textContent) ;
+            $datosPrecio[$titulosTabla[$i]][] = trim($divPriceSC[$llave]->textContent);
             $i++;
         }
         foreach ($datosPrecio as $producto => $precios) {
@@ -169,11 +165,11 @@ class ControladorPreciosMercado extends Controller
             strlen($datosPrecio)
         );
 
-        //$datosPrecio = substr(
-        //$datosPrecio,
-        //0,
-        //strpos($datosPrecio, "Rosario, ")
-        //);
+        $datosPrecio = substr(
+        $datosPrecio,
+        0,
+        strpos($datosPrecio, "<small>Córdoba 1402")
+        );
 
         return $datosPrecio;
     }
