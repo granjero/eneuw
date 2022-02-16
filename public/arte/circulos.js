@@ -1,26 +1,26 @@
-let segundos = 0;
+let tiempo = 0;
 
 function setup() {
-    windowWidth >= windowHeight
-        ? createCanvas(windowHeight, windowHeight)
-        : createCanvas(windowWidth, windowWidth);
-    frameRate(1);
+    createCanvas(windowWidth, windowHeight);
+    //windowWidth >= windowHeight
+    //? createCanvas(windowHeight, windowHeight)
+    //: createCanvas(windowWidth, windowWidth);
+    //frameRate(1);
 }
 
 function draw() {
-    if (segundos % 10 == 0) {
-        segundos = 1;
+    if (millis() >= tiempo + 5000 || tiempo == 0) {
+        tiempo = millis();
         let cmp = new Composicion();
         cmp.arte();
     }
-    segundos++;
 }
 
 class Composicion {
     constructor() {
         this.centroCanvas = new p5.Vector(width / 2, height / 2);
-        this.centroCN = this.centroCirculoNegro();
         this.diamCN = this.diametroCirculoNegro();
+        this.centroCN = this.centroCirculoNegro();
         this.anchoTrazoCN = this.anchoTrazoCirculoNegro();
         this.ultimoCentro = this.centroCN;
     }
@@ -75,18 +75,18 @@ class Composicion {
         endShape();
     }
 
+    diametroCirculoNegro() {
+        return floor(random(height * 0.8, height * 0.85));
+    }
+
     centroCirculoNegro() {
         let circulo = p5.Vector.random2D();
-        circulo.setMag(random(width * 0.1));
+        circulo.setMag((height - this.diamCN) / 2.5);
         return p5.Vector.add(this.centroCanvas, circulo);
     }
 
-    diametroCirculoNegro() {
-        return random(width * 0.7, width * 0.75);
-    }
-
     anchoTrazoCirculoNegro() {
-        return random(width * 0.033, width * 0.055);
+        return random(height * 0.04, height * 0.06);
     }
 
     circuloNegro() {
@@ -106,14 +106,16 @@ class Composicion {
         let centro = p5.Vector.add(this.centroCN, pi);
         let resta = p5.Vector.sub(centro, this.ultimoCentro);
         // evita que los circulos se hagan muy pegados.
-        while(Math.abs(resta.x) < this.diamCN * .25 &&  Math.abs(resta.y) < this.diamCN * .25) {
+        while (
+            Math.abs(resta.x) < this.diamCN * 0.25 &&
+            Math.abs(resta.y) < this.diamCN * 0.25
+        ) {
             pi = p5.Vector.random2D();
             pi.setMag(random(this.diamCN * 0.45 - diam * 0.5));
             centro = p5.Vector.add(this.centroCN, pi);
             resta = p5.Vector.sub(centro, this.ultimoCentro);
         }
-        console.log(this.ultimoCentro);
-        return this.ultimoCentro = p5.Vector.add(this.centroCN, pi);
+        return (this.ultimoCentro = p5.Vector.add(this.centroCN, pi));
     }
 
     colorCirculo() {
@@ -127,19 +129,19 @@ class Composicion {
 
     tamanioCirculo(tamanio) {
         switch (tamanio) {
-            case 'grande':
+            case "grande":
                 return random(this.diamCN / 4, this.diamCN / 3);
 
-            case 'mediano':
+            case "mediano":
                 return random(this.diamCN / 6, this.diamCN / 5);
 
-            case 'chico':
+            case "chico":
                 return random(this.diamCN / 8, this.diamCN / 7);
 
-            case 'muy_chico':
+            case "muy_chico":
                 return random(this.diamCN / 15, this.diamCN / 13);
 
-            case 'infimo':
+            case "infimo":
                 return random(this.diamCN / 30, this.diamCN / 25);
 
             default:
@@ -165,12 +167,12 @@ class Composicion {
     }
 
     anchoLineaNerga() {
-        return floor(random(1, 3));
+        return floor(random(1, 2));
     }
 
     lineaNegraPI() {
         let pi = p5.Vector.random2D();
-        pi.setMag(random(this.diamCN * 0.45));
+        pi.setMag(random(this.diamCN * 0.3, this.diamCN * 0.48));
         return p5.Vector.add(this.centroCN, pi);
     }
 
@@ -199,7 +201,7 @@ class Composicion {
     }
 
     magnitudPerpendicular() {
-        return random(width * 0.009, width * 0.015);
+        return random(height * 0.009, width * 0.015);
         //return 10;
     }
 
@@ -212,13 +214,20 @@ class Composicion {
         return p5.Vector.fromAngle(p5.Vector.sub(pf, pi).heading() + HALF_PI);
     }
 
+    // retorna un vector unitario perpendicular al segmento pi pf
+    vectorDiagonal(pi, pf) {
+        return p5.Vector.fromAngle(
+            p5.Vector.sub(pf, pi).heading() + QUARTER_PI
+        );
+    }
+
     // retorna un vector unitario paralelo al segmento pi pf
     vectorParalelo(pi, pf) {
         return createVector(p5.Vector.sub(pf, pi).x, p5.Vector.sub(pf, pi).y);
     }
 
     cantLineas() {
-        return floor(random(2, 4));
+        return floor(random(3, 5));
     }
 
     lineas(cant = 1) {
@@ -228,11 +237,11 @@ class Composicion {
             let pi = this.lineaNegraPI();
             let pf = this.lineaNegraPF();
 
+            // controla que el largo de las lienas sea mayor a 1/2 de diamCN
             while (pi.dist(pf) < this.diamCN * 0.5) {
                 pi = this.lineaNegraPI();
                 pf = this.lineaNegraPF();
             }
-
 
             let modificador = this.vectorPerpendicular(pi, pf);
             modificador.setMag(this.magnitudPerpendicular());
@@ -247,25 +256,46 @@ class Composicion {
             }
 
             if (random(1) >= 0.5) {
+                this.lineasDiagonales(pi, pf);
+            } else {
                 this.lineasPerpendiculares(pi, pf);
             }
+
+            let vector = createVector(pi, pf);
         }
     }
 
     lineasPerpendiculares(pi, pf) {
         let vectorParalelo = this.vectorParalelo(pi, pf);
         let vectorPerpendicular = this.vectorPerpendicular(pi, pf);
-        vectorParalelo.setMag(random(width * .07, width * .15));
+        vectorParalelo.setMag(random(width * 0.07, width * 0.15));
         for (let i = 0; i < this.cantLineas(); i++) {
-            vectorPerpendicular.setMag(random(width * .07, width * .15));
+            vectorPerpendicular.setMag(random(width * 0.07, width * 0.15));
             line(
                 pi.x + vectorPerpendicular.x + vectorParalelo.x,
                 pi.y + vectorPerpendicular.y + vectorParalelo.y,
                 pi.x - vectorPerpendicular.x + vectorParalelo.x,
                 pi.y - vectorPerpendicular.y + vectorParalelo.y
             );
-            vectorParalelo.x += random(width * .007, width * .015);
-            vectorParalelo.y += random(width * .007, width * .015);
+            vectorParalelo.x += random(width * 0.007, width * 0.015);
+            vectorParalelo.y += random(width * 0.007, width * 0.015);
+        }
+    }
+
+    lineasDiagonales(pi, pf) {
+        let vectorParalelo = this.vectorParalelo(pi, pf);
+        let vectorDiagonal = this.vectorDiagonal(pi, pf);
+        vectorParalelo.setMag(random(this.diamCN * 0.75));
+        for (let i = 0; i < this.cantLineas(); i++) {
+            vectorDiagonal.setMag(this.diamCN * 0.1);
+            line(
+                pi.x + vectorDiagonal.x + vectorParalelo.x,
+                pi.y + vectorDiagonal.y + vectorParalelo.y,
+                pi.x - vectorDiagonal.x + vectorParalelo.x,
+                pi.y - vectorDiagonal.y + vectorParalelo.y
+            );
+            vectorParalelo.x += random(width * 0.001, width * 0.005);
+            vectorParalelo.y += random(width * 0.001, width * 0.005);
         }
     }
 
@@ -275,28 +305,29 @@ class Composicion {
         this.lineaVerde();
         this.circuloNegro();
 
-        for (let i = 0; i < 3; i++) {
-            this.circuloInterior('grande', true);
-        }
-        for (let i = 0; i < 2; i++) {
-            this.circuloInterior('mediano', false);
-        }
-        for (let i = 0; i < 2; i++) {
-            this.circuloInterior('chico', true);
-            this.circuloInterior('chico', false);
-        }
+        this.linea(3);
         this.lineas(2);
+
+        for (let i = 0; i < 3; i++) {
+            this.circuloInterior("grande", true);
+        }
         for (let i = 0; i < 2; i++) {
-            this.circuloInterior('muy_chico', true);
-            this.circuloInterior('muy_chico', false);
+            this.circuloInterior("mediano", false);
         }
-        this.linea(2);
-        this.lineas(1);
+        for (let i = 0; i < 2; i++) {
+            this.circuloInterior("chico", true);
+            this.circuloInterior("chico", false);
+        }
+        //this.lineas(2);
+        for (let i = 0; i < 2; i++) {
+            this.circuloInterior("muy_chico", true);
+            this.circuloInterior("muy_chico", false);
+        }
+        //this.linea(2);
+        //this.lineas(1);
         for (let i = 0; i < 4; i++) {
-            this.circuloInterior('infimo', true);
-            this.circuloInterior('infimo', false);
+            this.circuloInterior("infimo", true);
+            this.circuloInterior("infimo", false);
         }
-        this.linea(2);
-        this.lineas(1);
     }
 }
