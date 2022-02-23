@@ -2,14 +2,10 @@ let tiempo = 0;
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
-    //windowWidth >= windowHeight
-    //? createCanvas(windowHeight, windowHeight)
-    //: createCanvas(windowWidth, windowWidth);
-    //frameRate(1);
 }
 
 function draw() {
-    if (millis() >= tiempo + 5000 || tiempo == 0) {
+    if (millis() >= tiempo + 60000 || tiempo == 0) {
         tiempo = millis();
         let cmp = new Composicion();
         cmp.arte();
@@ -119,6 +115,68 @@ class Composicion {
     }
 
     colorCirculo() {
+        let color = random([
+            "azar",
+            "rojos",
+            "verdes",
+            "azules",
+            "violetas",
+            "amarillos",
+            "marrones",
+        ]);
+        let colorFinal = [];
+
+        //switch (color) {
+        //case "azar":
+        //return [
+        //random(255),
+        //random(255),
+        //random(255),
+        //random(100, 150),
+        //];
+        //case "rojos":
+        //return [
+        //random(190, 255),
+        //random(60, 100),
+        //random(60, 100),
+        //random(100, 150),
+        //];
+        //case "verdes":
+        //return [
+        //random(90, 130),
+        //random(190, 255),
+        //random(90, 130),
+        //random(80, 150),
+        //];
+        //case "azules":
+        //return [
+        //random(60, 100),
+        //random(60, 100),
+        //random(190, 255),
+        //random(80, 150),
+        //];
+        //case "violetas":
+        //return [
+        //random(60, 100),
+        //random(30, 55),
+        //random(90, 155),
+        //random(80, 150),
+        //];
+        //case "amarillos":
+        //return [
+        //random(190, 255),
+        //random(190, 255),
+        //random(60, 100),
+        //random(80, 150),
+        //];
+        //case "marrones":
+        //return [
+        //random(90, 120),
+        //random(30, 90),
+        //random(30, 50),
+        //random(80, 150),
+        //];
+        //}
         return [
             floor(random(255)),
             floor(random(255)),
@@ -142,7 +200,7 @@ class Composicion {
                 return random(this.diamCN / 15, this.diamCN / 13);
 
             case "infimo":
-                return random(this.diamCN / 30, this.diamCN / 25);
+                return random(this.diamCN / 50, this.diamCN / 25);
 
             default:
                 return 0;
@@ -166,10 +224,6 @@ class Composicion {
         circle(centro.x, centro.y, diam);
     }
 
-    anchoLineaNerga() {
-        return floor(random(1, 2));
-    }
-
     lineaNegraPI() {
         let pi = p5.Vector.random2D();
         pi.setMag(random(this.diamCN * 0.3, this.diamCN * 0.48));
@@ -183,7 +237,7 @@ class Composicion {
     }
 
     anchoTrazoLineaNerga() {
-        return floor(random(1, 3));
+        return random([0.9, 1, 1.2, 1.4, 1.6]);
     }
 
     linea(cant = 1) {
@@ -192,7 +246,10 @@ class Composicion {
             strokeWeight(this.anchoTrazoLineaNerga());
             let pi = this.lineaNegraPI();
             let pf = this.lineaNegraPF();
-            while (pi.dist(pf) < this.diamCN * 0.2) {
+            while (
+                pi.dist(pf) < this.diamCN * 0.5 ||
+                pf.dist(pi) < this.diamCN * 0.5
+            ) {
                 pi = this.lineaNegraPI();
                 pf = this.lineaNegraPF();
             }
@@ -201,12 +258,12 @@ class Composicion {
     }
 
     magnitudPerpendicular() {
-        return random(height * 0.009, width * 0.015);
-        //return 10;
+        //return random(height * 0.009, width * 0.015);
+        return random(5, 10);
     }
 
     tuerceUnPoco() {
-        return random(2);
+        return random(1);
     }
 
     // retorna un vector unitario perpendicular al segmento pi pf
@@ -237,8 +294,11 @@ class Composicion {
             let pi = this.lineaNegraPI();
             let pf = this.lineaNegraPF();
 
-            // controla que el largo de las lienas sea mayor a 1/2 de diamCN
-            while (pi.dist(pf) < this.diamCN * 0.5) {
+            // controla que el largo de las lienas sea mayor a 80%  de diamCN
+            while (
+                pi.dist(pf) < this.diamCN * 0.8 ||
+                pf.dist(pi) < this.diamCN * 0.8
+            ) {
                 pi = this.lineaNegraPI();
                 pf = this.lineaNegraPF();
             }
@@ -255,13 +315,14 @@ class Composicion {
                 pf.y = pf.y - modificador.y * this.tuerceUnPoco();
             }
 
-            if (random(1) >= 0.5) {
+            if (random(1) >= 0.25) {
                 this.lineasDiagonales(pi, pf);
-            } else {
+            }
+            if (random(1) >= 0.25) {
                 this.lineasPerpendiculares(pi, pf);
             }
 
-            let vector = createVector(pi, pf);
+            //let vector = createVector(pi, pf);
         }
     }
 
@@ -305,8 +366,8 @@ class Composicion {
         this.lineaVerde();
         this.circuloNegro();
 
-        this.linea(3);
-        this.lineas(2);
+        this.linea(7);
+        this.lineas(1);
 
         for (let i = 0; i < 3; i++) {
             this.circuloInterior("grande", true);
@@ -318,14 +379,11 @@ class Composicion {
             this.circuloInterior("chico", true);
             this.circuloInterior("chico", false);
         }
-        //this.lineas(2);
         for (let i = 0; i < 2; i++) {
             this.circuloInterior("muy_chico", true);
             this.circuloInterior("muy_chico", false);
         }
-        //this.linea(2);
-        //this.lineas(1);
-        for (let i = 0; i < 4; i++) {
+        for (let i = 0; i < 7; i++) {
             this.circuloInterior("infimo", true);
             this.circuloInterior("infimo", false);
         }
