@@ -35,15 +35,27 @@ Route::get("floralis", function () {
 Route::get("viento", function () {
     return view("arte.viento");
 });
+Route::get("20print", function () {
+    return view("arte.20print");
+});
+Route::get("fractarbol", function () {
+    return view("arte.fractarbol");
+});
 
 // cosas
-Route::post("cadaverExquisito", [ControladorCadaverExquisito::class, "agregaOracionCadaverExquisito"]);
+Route::post("cadaverExquisito", [
+    ControladorCadaverExquisito::class,
+    "agregaOracionCadaverExquisito",
+]);
 
-Route::get("preciosDelMercadoDeGranos", [ControladorPreciosMercado::class, "precios"]);
+Route::get("preciosDelMercadoDeGranos", [
+    ControladorPreciosMercado::class,
+    "precios",
+]);
 
 Route::get("test", [ControladorPreciosMercado::class, "precios"]);
 
 //Route::get("test", [
-    //ControladorCadaverExquisito::class,
-    //"ultimaPalabraCadaverExquisito",
+//ControladorCadaverExquisito::class,
+//"ultimaPalabraCadaverExquisito",
 //]);

@@ -1,7 +1,13 @@
-let segundos = 0;
+/*
+ * JuanMiguel @juanmiguells
+ * Buenos Aires, 2022.
+ * Código libre. Mencione la fuente.
+ */
+
+let tiempo = 0;
 
 function setup() {
-    createCanvas(windowWidth, windowHeight);
+    createCanvas(800, 480);
     background(5);
     frameRate(1);
     strokeWeight(2);
@@ -9,19 +15,18 @@ function setup() {
 }
 
 function draw() {
-    if (segundos % 12 == 0) {
-        segundos = 1;
+    if (millis() >= tiempo + 300000 || tiempo == 0) {
+        tiempo = millis();
         background(5, 0, 5);
-        dibuja = new Trazo();
-        dibuja.arte();
+        arte = new Obscur();
+        arte.genera();
     }
-    segundos++;
 }
 
-class Trazo {
+class Obscur {
     constructor() {
-        this.Pi = [floor(windowWidth / 2), floor(windowHeight / 2)];
-        this.Pf = [floor(windowWidth / 2), floor(windowHeight / 2)];
+        this.puntoInicial = [floor(width / 2), floor(height / 2)];
+        this.puntoFinal = [floor(width / 2), floor(height / 2)];
     }
 
     ultimaDireccion = "inicial";
@@ -31,29 +36,25 @@ class Trazo {
     trazMax = 40;
     modificadorLargo = 0.2;
 
-    // devuelve una cantidad de segmentos para el trazo
     // :number
     segmentos() {
         return floor(random(this.segmMin, this.segmMax));
     }
 
-    // devuelve una cantidad de trazos para el arte
     // :number
     trazos() {
         return floor(random(this.trazMin, this.trazMax));
     }
 
-    // una suerte de reset para antes de cada trazo
     // :void
     centrar() {
-        this.Pi = [floor(windowWidth / 2), floor(windowHeight / 2)];
-        this.Pf = [floor(windowWidth / 2), floor(windowHeight / 2)];
+        this.puntoInicial = [floor(width / 2), floor(height / 2)];
+        this.puntoFinal = [floor(width / 2), floor(height / 2)];
     }
 
-    // el nuevo punto inicial del trazo es el final del anterior
     // :void
-    nuevoPi() {
-        this.Pi = this.Pf;
+    nuevoPuntoInicial() {
+        this.puntoInicial = this.puntoFinal;
     }
 
     // :number
@@ -66,9 +67,8 @@ class Trazo {
         return floor(random(width * this.modificadorLargo));
     }
 
-    // un nuevo punto final para el trazo según las reglas elegidas.
     // :void
-    nuevoPf() {
+    nuevoPuntoFinal() {
         let direcciones = ["arriba", "abajo", "izquierda", "derecha"];
         let vert = this.largoSegmentoVertical();
         let hor = this.largoSegmentoHorizontal();
@@ -83,47 +83,52 @@ class Trazo {
         switch (direccion) {
             case "arriba":
                 this.ultimaDireccion = direccion;
-                return (this.Pf =
-                    this.Pf[1] + vert >= windowHeight * 0.95
-                        ? [this.Pf[0], this.Pf[1] - vert]
-                        : [this.Pf[0], this.Pf[1] + vert]);
+                return (this.puntoFinal =
+                    this.puntoFinal[1] + vert >= height * 0.95
+                        ? [this.puntoFinal[0], this.puntoFinal[1] - vert]
+                        : [this.puntoFinal[0], this.puntoFinal[1] + vert]);
 
             case "abajo":
                 this.ultimaDireccion = direccion;
-                return (this.Pf =
-                    this.Pf[1] - vert <= windowHeight * 0.05
-                        ? [this.Pf[0], this.Pf[1] + vert]
-                        : [this.Pf[0], this.Pf[1] - vert]);
+                return (this.puntoFinal =
+                    this.puntoFinal[1] - vert <= height * 0.05
+                        ? [this.puntoFinal[0], this.puntoFinal[1] + vert]
+                        : [this.puntoFinal[0], this.puntoFinal[1] - vert]);
 
             case "derecha":
                 this.ultimaDireccion = direccion;
-                return (this.Pf =
-                    this.Pf[0] + hor >= windowWidth * 0.95
-                        ? [this.Pf[0] - hor, this.Pf[1]]
-                        : [this.Pf[0] + hor, this.Pf[1]]);
+                return (this.puntoFinal =
+                    this.puntoFinal[0] + hor >= width * 0.95
+                        ? [this.puntoFinal[0] - hor, this.puntoFinal[1]]
+                        : [this.puntoFinal[0] + hor, this.puntoFinal[1]]);
 
             case "izquierda":
                 this.ultimaDireccion = direccion;
-                return (this.Pf =
-                    this.Pf[0] - hor <= windowWidth * 0.05
-                        ? [this.Pf[0] + hor, this.Pf[1]]
-                        : [this.Pf[0] - hor, this.Pf[1]]);
+                return (this.puntoFinal =
+                    this.puntoFinal[0] - hor <= width * 0.05
+                        ? [this.puntoFinal[0] + hor, this.puntoFinal[1]]
+                        : [this.puntoFinal[0] - hor, this.puntoFinal[1]]);
         }
     }
 
     // :display
     dibujaSegmento() {
-        line(this.Pi[0], this.Pi[1], this.Pf[0], this.Pf[1]);
+        line(
+            this.puntoInicial[0],
+            this.puntoInicial[1],
+            this.puntoFinal[0],
+            this.puntoFinal[1]
+        );
     }
 
     // :display
-    arte() {
+    genera() {
         for (let j = 0; j <= this.trazos(); j++) {
             this.centrar();
             let cantidad = this.segmentos();
             for (let i = 0; i <= cantidad; i++) {
-                this.nuevoPi();
-                this.nuevoPf();
+                this.nuevoPuntoInicial();
+                this.nuevoPuntoFinal();
                 for (let k = 0; k < cantidad - i; k++) this.dibujaSegmento();
             }
         }
