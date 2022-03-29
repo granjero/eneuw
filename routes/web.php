@@ -41,6 +41,9 @@ Route::get("20print", function () {
 Route::get("fractarbol", function () {
     return view("arte.fractarbol");
 });
+Route::get("masCirculos", function () {
+    return view("arte.masCirculos");
+});
 
 // cosas
 Route::post("cadaverExquisito", [
