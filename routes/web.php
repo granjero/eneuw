@@ -44,6 +44,9 @@ Route::get("fractarbol", function () {
 Route::get("masCirculos", function () {
     return view("arte.masCirculos");
 });
+Route::get("noche", function () {
+    return view("arte.noche");
+});
 
 // cosas
 Route::post("cadaverExquisito", [
